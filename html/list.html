@@ -1,0 +1,23 @@
+<input type="text" ng-model="search" class="search-query" placeholder="Search">
+<table>
+  <thead>
+  <tr>
+    <th>Noun</th>
+    <th>Gender</th>
+    <th>Declension</th>
+    <th>Definition</th>
+    <th><a href="#/new">NEW</a></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="noun in nouns | filter:search | orderBy:'name'">
+    <td>{{noun.name}}</td>
+    <td>{{noun.gender}}</td>
+    <td>{{noun.declension}}</td>
+    <td>{{noun.definition}}</td>
+    <td>
+      <a href="#/edit/{{noun._id.$oid}}">EDIT</a>
+    </td>
+  </tr>
+  </tbody>
+</table>

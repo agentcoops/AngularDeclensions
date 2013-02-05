@@ -1,0 +1,75 @@
+<form name="nounEdit">
+  <div class="control-group" ng-class="{error: nounEdit.name.$invalid}">
+    <label>Noun</label>
+    <input type="text" name="name" ng-model="noun.name" required>
+    <span ng-show="nounEdit.name.$error.required" class="help-inline">
+        Required</span>
+  </div>
+ 
+  <div class="control-group" ng-class="{error: nounEdit.gender.$invalid}">
+    <label>Gender</label>
+    <input type="text" name="gender" ng-model="noun.gender" required>
+    <span ng-show="nounEdit.gender.$error.required" class="help-inline">
+      Required</span>
+  </div>
+
+  <div class="control-group" ng-class="{error: nounEdit.declension.$invalid}">
+    <label>Declension</label>
+    <input type="text" name="declension" ng-model="noun.declension" required>
+    <span ng-show="nounEdit.declension.$error.required" class="help-inline">
+      Required</span>
+  </div>
+
+  <div class="control-group" ng-class="{error: nounEdit.definition.$invalid}">
+    <label>Definition</label>
+    <input type="text" name="definition" ng-model="noun.definition" required>
+    <span ng-show="nounEdit.definition.$error.required" class="help-inline">
+      Required</span>
+  </div>
+
+  <br>
+
+  <table>
+    <tr><th></th><th>Singular</th><th>Plural</th></tr>
+    <tr>
+      <td>Nominative</td> 
+      <td><input type="text" name="nominativeSingular" ng-model="noun.declension.nominative.singular"></td>  
+      <td><input type="text" name="nominativePlural" ng-model="noun.declension.nominative.plural"></td>
+    </tr>
+    <tr>
+      <td>Genitive</td>
+      <td><input type="text" name="genitiveSingular" ng-model="noun.declension.genitive.singular"></td>  
+      <td><input type="text" name="genitivePlural" ng-model="noun.declension.genitive.plural"></td>
+    </tr>
+    <tr>
+      <td>Dative</td> 
+      <td><input type="text" name="dativeSingular" ng-model="noun.declension.dative.singular"></td>  
+      <td><input type="text" name="dativePlural" ng-model="noun.declension.dative.plural"></td>
+    </tr>
+    <tr>
+      <td>Accusitive</td> 
+      <td><input type="text" name="accusitiveSingular" ng-model="noun.declension.accusitive.singular"></td>  
+      <td><input type="text" name="accusitivePlural" ng-model="noun.declension.accusitive.plural"></td>
+    </tr>
+    <tr>
+      <td>Ablative</td> 
+      <td><input type="text" name="ablativeSingular" ng-model="noun.declension.ablative.singular"></td>  
+      <td><input type="text" name="ablativePlural" ng-model="noun.declension.ablative.plural"></td>
+    </tr>
+    <tr>
+      <td>Vocative</td> 
+      <td><input type="text" name="vocativeSingular" ng-model="noun.declension.vocative.singular"></td>  
+      <td><input type="text" name="vocativePlural" ng-model="noun.declension.vocative.plural"></td>
+    </tr>
+  </table>
+  <button ng-click="declense()" ng-disabled="isClean()">Declense</button>
+
+  <br>
+  <br>
+
+  <a href="#/" class="btn">Cancel</a>
+  <button ng-click="save()" ng-disabled="isClean() || nounEdit.$invalid"
+          class="btn btn-primary">Save</button>
+  <button ng-click="destroy()"
+          ng-show="noun._id" class="btn btn-danger">Delete</button>
+</form>
