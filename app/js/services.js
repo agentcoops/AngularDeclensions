@@ -16,10 +16,10 @@ angular.module('mongolab', ['ngResource']).
     };
     
     // F must be a function that accepts current position. 
-    Noun.foreachDeclension = function(noun, f) {
+    Noun.foreachDeclension = function(scope, f) {
       for (var nounCase in ["nominative","genitive","dative","accusitive","ablative","vocative"]) {
-        f(nounCase, "singular");
-        f(nounCase, "plural");
+        f(scope, nounCase, "singular");
+        f(scope, nounCase, "plural");
       }      
     }
 

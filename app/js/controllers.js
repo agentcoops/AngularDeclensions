@@ -81,8 +81,8 @@ function QuizCtrl($scope, $location, Noun) {
     loading = false;
   });
 
-  $scope.currentNoun = function() {loading ? "" : $scope.questionNoun.name}
-  $scope.isDone = function() {$scope.pos == $scope.total ? true : false}
+  $scope.currentNoun = function() {return $scope.questionNoun.name}
+  $scope.isDone = function() {$scope.pos >= $scope.total ? true : false}
 
   $scope.getNextActionTitle = function() {
     return nextActionTitle;
@@ -99,19 +99,23 @@ function QuizCtrl($scope, $location, Noun) {
 
   $scope.nextAction = function() {
     if ($scope.nextActionTitle == "Score") {
+      nextActionTitle = "Next";
       evaluateScore();
-      nextAction = "Next";
     } else {
+      nextActionTitle = "Score";
       nextQuestion();
-      nextAction = "Score";
     }
   }
 
   function resetFields() {
     Noun.foreachDeclension(function(nounCase, plural) {
-      alert("THIS IS A FUNCTION.");
+    //for (var nounCase in ["nominative","genitive","dative","accusitive","ablative","vocative"]) {
       if (!(nounCase in $scope.noun.declensions)) $scope.noun.declensions[nounCase] = {};       
-      $scope.noun.declensions[nounCase][plural] = "";
+      //$scope.noun.declensions[nounCase]["singular"] = "";
+      //$scope.noun.declensions[nounCase]["plural"] = "";
+      f(scope, nounCase, "singular");
+      f(scope, nounCase, "plural");
+    //}    
     })
   }
 
@@ -131,13 +135,12 @@ function QuizCtrl($scope, $location, Noun) {
       $scope.correct++;
       $scope.questionNoun.overallCorrect++ 
     }
-
+    //resetFields();
     Noun.save($scope.questionNoun);
   }
 
   function nextQuestion() {
     $scope.pos++;
-    resetFields();
     $scope.questionNoun = $scope.questions.pop();
   }
 }
