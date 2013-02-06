@@ -1,0 +1,55 @@
+body {
+	font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Helvetica, Arial, sans-serif;
+	color: #51463d;
+	font-size: 62.5%;
+	background: #f3f2e8;
+	
+        width: 100%;
+        max-height: 600px;
+
+        margin: 1 auto;
+        font-size: 1.3em;
+}
+
+a:link, a:visited {
+    text-decoration: none;
+    outline: none;
+    color: #51463d;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: 8F8F8F;
+}
+
+#wrap {
+    float: left;
+    position: relative;
+    left: 50%;
+}
+
+#content {
+   float: left;
+   position: relative;
+   left: -50%;
+}
+
+#header {
+    padding: 20px 0 0 20px;
+    height: 25%;
+}
+
+#header li {
+    display: inline;
+}
+
+#footer {
+    padding: 20px 0 0 20px;
+    height: 75%;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}

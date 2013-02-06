@@ -1,0 +1,6 @@
+{"nominative": {"singular": ["us", ""], "plural": "/i"},
+ "genitive": {"singular": "/i", "plural": "/orum"},
+ "dative": {"singular": "/o", "plural": "/is"},
+ "accusitive": {"singular": "um", "plural": "/os"},
+ "ablative": {"singular": "/o", "plural": "/is"},
+ "vocative": {"singular": "e", "plural": "/i"}}
