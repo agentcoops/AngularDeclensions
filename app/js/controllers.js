@@ -81,8 +81,8 @@ function QuizCtrl($scope, $location, Noun) {
     loading = false;
   });
 
-  $scope.currentNoun = function() {return $scope.questionNoun.name}
-  $scope.isDone = function() {$scope.pos >= $scope.total ? true : false}
+  $scope.currentNoun = function() {return loading ? "" : $scope.questionNoun.name}
+  $scope.isDone = function() {return $scope.pos > $scope.total ? true : false}
 
   $scope.getNextActionTitle = function() {
     return nextActionTitle;
@@ -98,7 +98,7 @@ function QuizCtrl($scope, $location, Noun) {
   }
 
   $scope.nextAction = function() {
-    if ($scope.nextActionTitle == "Score") {
+    if (nextActionTitle == "Score") {
       nextActionTitle = "Next";
       evaluateScore();
     } else {
@@ -108,26 +108,25 @@ function QuizCtrl($scope, $location, Noun) {
   }
 
   function resetFields() {
-    Noun.foreachDeclension(function(nounCase, plural) {
-    //for (var nounCase in ["nominative","genitive","dative","accusitive","ablative","vocative"]) {
-      if (!(nounCase in $scope.noun.declensions)) $scope.noun.declensions[nounCase] = {};       
-      //$scope.noun.declensions[nounCase]["singular"] = "";
-      //$scope.noun.declensions[nounCase]["plural"] = "";
-      f(scope, nounCase, "singular");
-      f(scope, nounCase, "plural");
-    //}    
-    })
+    $scope.f = function(nounCase, plural) {
+      if ("noun" in $scope) {
+        $scope.noun.declensions[nounCase][plural] = "";
+      }
+    }
+
+    Noun.foreachDeclension($scope.f);
   }
 
   function evaluateScore() {
     var anyWrong = false;
-
-    Noun.foreachDeclension(function(nounCase, plural) {
+    $scope.f = function(nounCase, plural) {
       if ($scope.questionNoun.declensions[nounCase][plural] != $scope.noun.declensions[nounCase][plural]) {
-          $scope.noun.declensions[nounCase][plural] = "WRONG";
-          anyWrong = true;
-        }
-    });
+        $scope.noun.declensions[nounCase][plural] = "WRONG";
+        anyWrong = true;
+      }     
+    }
+    
+    Noun.foreachDeclension($scope.f);
 
     if (anyWrong) {
       $scope.questionNoun.runCount = 0;
@@ -135,12 +134,13 @@ function QuizCtrl($scope, $location, Noun) {
       $scope.correct++;
       $scope.questionNoun.overallCorrect++ 
     }
-    //resetFields();
+    
     Noun.save($scope.questionNoun);
   }
 
   function nextQuestion() {
     $scope.pos++;
+    resetFields();
     $scope.questionNoun = $scope.questions.pop();
   }
 }

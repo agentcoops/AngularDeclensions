@@ -15,12 +15,14 @@ angular.module('mongolab', ['ngResource']).
       return Noun.remove({id: this._id.$oid}, cb);
     };
     
-    // F must be a function that accepts current position. 
-    Noun.foreachDeclension = function(scope, f) {
-      for (var nounCase in ["nominative","genitive","dative","accusitive","ablative","vocative"]) {
-        f(scope, nounCase, "singular");
-        f(scope, nounCase, "plural");
-      }      
+    // F must be a function that accepts current position in
+    // declension matrix. 
+    Noun.foreachDeclension = function(f) {
+      var cases =  ["nominative","genitive","dative","accusitive","ablative","vocative"];
+      angular.forEach(cases, function(nounCase) {        
+        f(nounCase, "singular");
+        f(nounCase, "plural");
+      })       
     }
 
     return Noun;
