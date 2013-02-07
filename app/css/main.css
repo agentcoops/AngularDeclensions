@@ -22,16 +22,23 @@ a:hover {
     color: 8F8F8F;
 }
 
+.table {
+    display: table;
+    margin: 0 auto;
+}
+
 #wrap {
     float: left;
     position: relative;
-    left: 50%;
+    left: 50%; 
 }
 
 #content {
    float: left;
    position: relative;
    left: -50%;
+   min-height: 100%;
+   padding: 0 10px 10px 0;
 }
 
 #header {
@@ -52,4 +59,16 @@ ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
+}
+
+
+.boxbg { 
+    background-color: #e9ebe0; 
+}
+
+.all-round {
+    border-radius: 1em;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
+    border-radius: 1em;
 }

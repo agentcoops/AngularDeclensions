@@ -94,7 +94,7 @@ function QuizCtrl($scope, $location, Noun) {
     else if ($scope.isDone())
       return "Quiz over. You got "+ ($scope.correct / $scope.total * 100) +"% correct."
     else
-      return "On question "+ $scope.pos +" out of "+ $scope.total +". "+ $scope.correct +" correct this run."
+      return "Question "+ $scope.pos +" out of "+ $scope.total +". "+ $scope.correct +" correct."
   }
 
   $scope.nextAction = function() {
