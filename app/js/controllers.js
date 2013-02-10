@@ -14,28 +14,19 @@ function CreateCtrl($scope, $location, $http, Noun) {
     Noun.save($scope.noun, function(noun) {
       $location.path('/edit/' + noun._id.$oid);
     });
-  }
+  };
 
   $scope.loadDeclension = function() {
     $scope.nounEdit.nominativeSingular = "Woo";
-  }
+  };
 
   $scope.declense = function() {
     var declension = $scope.declensions[parseInt($scope.noun.declension) - 1];
-
-    if (!("declensions" in $scope.noun)) {
-      $scope.noun["declensions"] = {};            
-    }    
-
-    for (var nounCase in declension) {
-      if (!(nounCase in $scope.noun)) {
-        $scope.noun.declensions[nounCase] = {};
-      }      
-
-      $scope.noun.declensions[nounCase]["singular"] = $scope.noun.name + declension[nounCase]["singular"];
-      $scope.noun.declensions[nounCase]["plural"] = $scope.noun.name + declension[nounCase]["plural"];
-    }
-  }
+      
+    Noun.foreachDeclension(function(nounCase, plurality) {
+      scope.noun.declensions[nounCase][plurality] = $scope.noun.name + declension[nounCase][plurality];
+    });
+  };
 }
 
 function EditCtrl($scope, $location, $routeParams, Noun) {
@@ -48,7 +39,7 @@ function EditCtrl($scope, $location, $routeParams, Noun) {
  
   $scope.isClean = function() {
     return angular.equals(self.original, $scope.noun);
-  }
+  };
  
   $scope.destroy = function() {
     self.original.destroy(function() {
@@ -64,7 +55,7 @@ function EditCtrl($scope, $location, $routeParams, Noun) {
 }
 
 function QuizCtrl($scope, $location, Noun) { 
-  $scope.questionNoun;
+  //$scope.questionNoun;
 
   var loading = true;
   var nextActionTitle = "Next";
@@ -74,28 +65,28 @@ function QuizCtrl($scope, $location, Noun) {
   $scope.questions = Noun.query(function() {
     $scope.total = $scope.questions.length;    
     $scope.questions.sort(function(noun1, noun2) {
-      return noun1.overallCorrect < noun2.overallCorrect
+      return noun1.overallCorrect < noun2.overallCorrect;
     });
     
     $scope.nextAction();
     loading = false;
   });
 
-  $scope.currentNoun = function() {return loading ? "" : $scope.questionNoun.name}
-  $scope.isDone = function() {return $scope.pos > $scope.total ? true : false}
+  $scope.currentNoun = function() {return loading ? "" : $scope.questionNoun.name;};
+  $scope.isDone = function() {return $scope.pos > $scope.total ? true : false;};
 
   $scope.getNextActionTitle = function() {
     return nextActionTitle;
-  }
+  };
 
   $scope.statusMessage = function() {
     if (loading)
-      return "Loading..."
+      return "Loading...";
     else if ($scope.isDone())
-      return "Quiz over. You got "+ ($scope.correct / $scope.total * 100) +"% correct."
+      return "Quiz over. You got "+ ($scope.correct / $scope.total * 100) +"% correct.";
     else
-      return "On question "+ $scope.pos +" out of "+ $scope.total +". "+ $scope.correct +" correct this run."
-  }
+      return "On question "+ $scope.pos +" out of "+ $scope.total +". "+ $scope.correct +" correct this run.";
+  };
 
   $scope.nextAction = function() {
     if (nextActionTitle == "Score") {
@@ -105,14 +96,14 @@ function QuizCtrl($scope, $location, Noun) {
       nextActionTitle = "Score";
       nextQuestion();
     }
-  }
+  };
 
   function resetFields() {
     $scope.f = function(nounCase, plural) {
       if ("noun" in $scope) {
         $scope.noun.declensions[nounCase][plural] = "";
       }
-    }
+    };
 
     Noun.foreachDeclension($scope.f);
   }
@@ -124,7 +115,7 @@ function QuizCtrl($scope, $location, Noun) {
         $scope.noun.declensions[nounCase][plural] = "WRONG";
         anyWrong = true;
       }     
-    }
+    };
     
     Noun.foreachDeclension($scope.f);
 
@@ -132,7 +123,7 @@ function QuizCtrl($scope, $location, Noun) {
       $scope.questionNoun.runCount = 0;
     } else {
       $scope.correct++;
-      $scope.questionNoun.overallCorrect++ 
+      $scope.questionNoun.overallCorrect++;
     }
     
     Noun.save($scope.questionNoun);

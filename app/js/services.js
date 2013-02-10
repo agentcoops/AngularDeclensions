@@ -14,16 +14,24 @@ angular.module('mongolab', ['ngResource']).
     Noun.prototype.destroy = function(cb) {
       return Noun.remove({id: this._id.$oid}, cb);
     };
+
+    // Experimenting with best practices for model specification, ensuring second dict exists.
+    Noun.prototype.declensions = 
+                  {"nominative": {"singular": "", "plural": ""},
+                   "genitive": {"singular": "", "plural": ""},
+                   "dative": {"singular": "", "plural": ""},
+                   "accusitive": {"singular": "", "plural": ""},
+                   "ablative": {"singular": "", "plural": ""},
+                   "vocative": {"singular": "", "plural": ""}};
     
     // F must be a function that accepts current position in
     // declension matrix. 
     Noun.foreachDeclension = function(f) {
-      var cases =  ["nominative","genitive","dative","accusitive","ablative","vocative"];
       angular.forEach(cases, function(nounCase) {        
         f(nounCase, "singular");
         f(nounCase, "plural");
-      })       
-    }
+      });
+    };
 
     return Noun;
   });
