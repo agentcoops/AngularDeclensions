@@ -76,7 +76,7 @@ function QuizCtrl($scope, $location, Noun) {
   $scope.isDone = function() {return $scope.pos > $scope.total ? true : false;};
 
   $scope.getNextActionTitle = function() {
-    return nextActionTitle;
+    return $scope.isDone()? "DONE" : nextActionTitle;
   };
 
   $scope.statusMessage = function() {
@@ -110,15 +110,13 @@ function QuizCtrl($scope, $location, Noun) {
 
   function evaluateScore() {
     var anyWrong = false;
-    $scope.f = function(nounCase, plural) {
+    Noun.foreachDeclension(function(nounCase, plural) {
       if ($scope.questionNoun.declensions[nounCase][plural] != $scope.noun.declensions[nounCase][plural]) {
         $scope.noun.declensions[nounCase][plural] = "WRONG";
         anyWrong = true;
       }     
-    };
+    });
     
-    Noun.foreachDeclension($scope.f);
-
     if (anyWrong) {
       $scope.questionNoun.runCount = 0;
     } else {

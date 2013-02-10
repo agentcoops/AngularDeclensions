@@ -13,33 +13,45 @@
     <tr><th></th><th>Singular</th><th>Plural</th></tr>
     <tr>
       <td>Nominative</td> 
-      <td><input type="text" name="nominativeSingular" ng-model="noun.declensions.nominative.singular"></td>  
-      <td><input type="text" name="nominativePlural" ng-model="noun.declensions.nominative.plural"></td>
+      <td><input type="text" name="nominativeSingular"
+      ng-model="noun.declensions.nominative.singular" required></td>  
+      <td><input type="text" name="nominativePlural"
+      ng-model="noun.declensions.nominative.plural" required></td>
     </tr>
     <tr>
       <td>Genitive</td>
-      <td><input type="text" name="genitiveSingular" ng-model="noun.declensions.genitive.singular"></td>  
-      <td><input type="text" name="genitivePlural" ng-model="noun.declensions.genitive.plural"></td>
+      <td><input type="text" name="genitiveSingular"
+      ng-model="noun.declensions.genitive.singular" required></td>  
+      <td><input type="text" name="genitivePlural"
+      ng-model="noun.declensions.genitive.plural" required></td>
     </tr>
     <tr>
       <td>Dative</td> 
-      <td><input type="text" name="dativeSingular" ng-model="noun.declensions.dative.singular"></td>  
-      <td><input type="text" name="dativePlural" ng-model="noun.declensions.dative.plural"></td>
+      <td><input type="text" name="dativeSingular"
+      ng-model="noun.declensions.dative.singular" required></td>  
+      <td><input type="text" name="dativePlural"
+      ng-model="noun.declensions.dative.plural" required></td>
     </tr>
     <tr>
       <td>Accusitive</td> 
-      <td><input type="text" name="accusitiveSingular" ng-model="noun.declensions.accusitive.singular"></td>  
-      <td><input type="text" name="accusitivePlural" ng-model="noun.declensions.accusitive.plural"></td>
+      <td><input type="text" name="accusitiveSingular"
+      ng-model="noun.declensions.accusitive.singular" required></td>  
+      <td><input type="text" name="accusitivePlural"
+      ng-model="noun.declensions.accusitive.plural" required></td>
     </tr>
     <tr>
       <td>Ablative</td> 
-      <td><input type="text" name="ablativeSingular" ng-model="noun.declensions.ablative.singular"></td>  
-      <td><input type="text" name="ablativePlural" ng-model="noun.declensions.ablative.plural"></td>
+      <td><input type="text" name="ablativeSingular"
+      ng-model="noun.declensions.ablative.singular" required></td>  
+      <td><input type="text" name="ablativePlural"
+      ng-model="noun.declensions.ablative.plural" required></td>
     </tr>
     <tr>
       <td>Vocative</td> 
-      <td><input type="text" name="vocativeSingular" ng-model="noun.declensions.vocative.singular"></td>  
-      <td><input type="text" name="vocativePlural" ng-model="noun.declensions.vocative.plural"></td>
+      <td><input type="text" name="vocativeSingular"
+      ng-model="noun.declensions.vocative.singular" required></td>  
+      <td><input type="text" name="vocativePlural"
+      ng-model="noun.declensions.vocative.plural" required></td>
     </tr>
   </table>
 
@@ -47,4 +59,4 @@
 
 <div>
 
-<button ng-disable="isDone() || isClean()" ng-click="nextAction()" type="button">{{getNextActionTitle()}}</button>
+<button ng-disable="isDone() | " ng-click="nextAction()" type="button">{{getNextActionTitle()}}</button>

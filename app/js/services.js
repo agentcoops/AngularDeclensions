@@ -27,10 +27,10 @@ angular.module('mongolab', ['ngResource']).
     // F must be a function that accepts current position in
     // declension matrix. 
     Noun.foreachDeclension = function(f) {
-      angular.forEach(cases, function(nounCase) {        
+      for (nounCase in Noun.prototype.declensions) {
         f(nounCase, "singular");
-        f(nounCase, "plural");
-      });
+        f(nounCase, "plural");          
+      }
     };
 
     return Noun;
