@@ -1,33 +1,58 @@
 <!doctype html>
 <html ng-app="latinweb">
   <head>
+    <meta charset="utf-8">
+    <title>Latin Study</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css" />
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <script src="lib/angular/angular.min.js"></script>
     <script src="lib/angular/angular-resource.min.js"></script>
+    <script src="lib/jquery/jquery-1.9.1.min.js"></script>
+    <script src="lib/bootstrap/bootstrap.min.js"></script>
     <script src="js/latinweb.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/services.js"></script>
   </head>
   <body>
     
-    <div id="wrap">
-      <div id="content" class="boxbg all-round">
-        <div id="header">
-          <h2><center> LEARN DECLENSIONS </center> </h2>
-          
-          <div id="menu" class="table">
-            <ul class="menu group">
-              <li> <a href="#/list">DATA</a> </li>
-              <li> <a href="#/quiz">QUIZ</a> </li>
-              <li> <a href="#/stats">STATS</a> </li>
-            </ul>
+
+    <div class="navbar-wrapper">
+      <!-- container will center within absolute wrapper -->
+      <div class="container">
+        
+        <div class="navbar navbar-inverse">
+          <div class="navbar-inner">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            
+            <a class="brand" href="#">STUDY LATIN</a>
+            
+            <div class="nav-collapse collapse">
+              <ul class="nav">
+                <li class="active"><a href="#">HOME</a></li>
+                <li> <a href="#/list">DATA</a> </li>
+                <li> <a href="#/quiz">QUIZ</a> </li>
+                <li> <a href="#/stats">STATS</a> </li>
+              </ul>
+            </div>
           </div>
         </div>
-
-        <div id="footer">
-          <div ng-view></div>
-        </div>
+      
       </div>
     </div>
+
+    <div class="application">
+      <img src="img/laurentius_de_voltolina_001.jpg" alt="">
+      <div class="content">
+        <div ng-view></div>
+      </div>
+    </div>
+    
   </body>
 </html>
