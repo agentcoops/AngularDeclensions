@@ -16,7 +16,7 @@
     left: 0;
     right: 0;
     z-index: 10;
-    margin-top: 20px;
+    /*margin-top: 20px;*/
     margin-bottom: -90px;
 }
 
@@ -60,26 +60,18 @@
 }
 
 .application .content {
+    float: none;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #f3f2e8;
     position: relative; 
-    z-index: 9;
-    background-color: transparent;
     position: static;
     max-width: 550px;
     padding: 0 20px;
-    margin-top: 200px;
+    margin-top: 80px; /* 200 */
 }
 
 /*
-a:link, a:visited {
-    text-decoration: none;
-    outline: none;
-    color: #51463d;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
 #container {
     float: left;
     position: relative;
@@ -105,7 +97,7 @@ a:hover {
     padding: 20px 0 0 20px;
     height: 75%;
 }
-
+n
 ul {
     list-style-type: none;
     padding: 0;
